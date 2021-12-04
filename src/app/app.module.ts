@@ -1,23 +1,41 @@
+// Angular Core Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
+// Firebase Modules Integration
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+// Routing Module
+import { AppRoutingModule } from './app.router';
+
+// Components
 import { AppComponent } from './app.component';
 
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+// Environments
 import { environment } from 'src/environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-
-//4/1AX4XfWgrxCmdty1rW4cNzXTZoopa7TzbfJryp5lSLl4NdbRwinCOXJVTrcA
+import { HomeComponent } from './pages/home/home.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    AdminComponent,
+    DashboardComponent,
+    LoginComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
-    provideFirebaseApp(() => initializeApp(environment.FIREBASE_SETTINGS)),
-    provideAuth(() => getAuth()),
+    AppRoutingModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.FIREBASE_SETTINGS),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
